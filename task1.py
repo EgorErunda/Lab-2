@@ -35,7 +35,7 @@ def generator(Data):
 
 if __name__ == "__main__":
        with open(DATASET_PATH) as dataset:
-        print(len_str(dataset))
-        print(author_poisk(dataset, "Classical Mythology"))
+        print("point 1:", len_str(dataset))
+        print("point 2:",author_poisk(dataset, "Sheila Heti"))
         generator(dataset)
    
