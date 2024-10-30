@@ -1,9 +1,10 @@
 import csv
 
-DATASET_PATH = 'books-en.csv'
+DATASET = 'books-en.csv'
+
 
 #1
-def len_str(Data):
+def lenStr(Data):
   Data.seek(0)
   reader = csv.DictReader(Data, delimiter = ';')
   counter = 0
@@ -11,15 +12,20 @@ def len_str(Data):
       if len(i["Book-Title"]) > 30:
           counter += 1
   return counter
+
+
 #2
-def author_poisk(Data, avtor)          :
+def authorPoisk(Data, avtor):
   Data.seek(0)
   result = []
   reader = csv.DictReader(Data, delimiter = ';')
   for i in reader:
-    if i["Book-Author"] == avtor and (int(i["Price"]) < 150):
-      result.append(i["Book-Title"])
+    if i["Book-Author"] == avtor:
+      if len(i["Price"]) < 3 or ord(i["Price"][1]) < ord('5'):
+        result.append(i["Book-Title"])
   return result
+
+
 #3
 def generator(Data):
   Data.seek(0)
@@ -34,8 +40,8 @@ def generator(Data):
 
 
 if __name__ == "__main__":
-       with open(DATASET_PATH) as dataset:
-        print("point 1:", len_str(dataset))
-        print("point 2:",author_poisk(dataset, "Sheila Heti"))
+       with open(DATASET) as dataset:
+        print("point 1:", lenStr(dataset))
+        print("point 2:",authorPoisk(dataset, "Celia Brooks Brown"))
         generator(dataset)
    
